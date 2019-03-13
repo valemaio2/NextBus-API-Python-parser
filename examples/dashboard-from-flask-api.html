@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Basic Page Example</title>
+  </head>
+  <body>
+    <h1>Basic Page Example</h1>
+
+    <div id="bus-timetable"></div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script>
+        // Simple API parsing from inbuilt API
+
+        $.getJSON("http://localhost:5000/api/v1.0/latest", function( data ) {
+
+          var items = [];
+
+          items.push("<thead class='thead-dark'><tr><th>Date</th><th>Bus Stop</th><th>Line Name</th><th>Direction</th><th>Scheduled Departure</th><th>Expected Departure</th></tr></thead>");
+
+          $.each( data['departures'], function( key, val ) {
+            var row_items = [];
+
+            row_items.push( "<td>" + val['date'].substring(0,10) + "</td>" );
+            row_items.push( "<td>" + val['bus_stop'] + "</td>" );
+            row_items.push( "<td>" + val['line_name'] + "</td>" );
+            row_items.push( "<td>" + val['direction'] + "</td>" );
+            row_items.push( "<td>" + val['scheduled_departure'].substring(11,16) + "</td>" );
+            row_items.push( "<td>" + val['expected_departure'].substring(11,16) + "</td>" );
+
+            items.push( "<tr>" + row_items.join("") + "</tr>");
+          });
+
+          $("#bus-timetable").append(
+            $( "<table/>", {
+              "class": "table table-striped",
+              html: items.join( "" )
+            })
+          );
+        });
+
+    </script>
+  </body>
+</html>
