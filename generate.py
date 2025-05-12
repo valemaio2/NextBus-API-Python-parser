@@ -18,10 +18,11 @@ output_html_filename = os.path.join(html_path, settings['output_html_file'])
 all_departures = []
 
 stops = settings['stops']
+num_deps = settings['num_departures']
 for stop in stops:
 
     filename = os.path.join(data_path, stop['stop_id']) + ".latest.xml"
-    departures = bus.convert_xmlfile_to_array(filename, stop['stop_name'])
+    departures = bus.convert_xmlfile_to_array(filename, stop['stop_name'])[:num_deps]
 
     all_departures.extend(departures)
 
@@ -63,7 +64,7 @@ content = content + "</thead>"
 
 for d in all_departures:
     status = ""
-    content = content + row_wrapper % (d['date'].strftime("%Y-%m-%d"), d['bus_stop'], d['line_name'], d['direction'], d['scheduled_departure'].strftime("%H:%M"), status, d['expected_departure'].strftime("%H:%M"))
+    content = content + row_wrapper % (d['date'].astimezone().strftime("%Y-%m-%d"), d['bus_stop'], d['line_name'], d['direction'], d['scheduled_departure'].astimezone().strftime("%H:%M"), status, d['expected_departure'].astimezone().strftime("%H:%M"))
 
 content = content + "</table>"
 

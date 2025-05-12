@@ -34,11 +34,12 @@ def convert_xmlfile_to_array(filename, stop_name):
         departure['direction'] = vehicle_journey.getElementsByTagName('DirectionName')[0].firstChild.nodeValue
 
         times = vehicle_journey.getElementsByTagName('MonitoredCall')[0]
-        departure['scheduled_departure'] = datetime.datetime.strptime(
-            times.getElementsByTagName('AimedDepartureTime')[0].firstChild.nodeValue, "%Y-%m-%dT%H:%M:%S.%fZ")
+        departure['scheduled_departure'] = datetime.datetime.fromisoformat(times.getElementsByTagName('AimedDepartureTime')[0].firstChild.nodeValue)
+	    #datetime.datetime.strptime(
+            #times.getElementsByTagName('AimedDepartureTime')[0].firstChild.nodeValue, "%Y-%m-%dT%H:%M:%S.%fZ")
         try:
-            departure['expected_departure'] = datetime.datetime.strptime(
-                times.getElementsByTagName('ExpectedDepartureTime')[0].firstChild.nodeValue, "%Y-%m-%dT%H:%M:%S.%fZ")
+            departure['expected_departure'] = datetime.datetime.formisoformat(times.getElementsByTagName('ExpectedDepartureTime')[0].firstChild.nodeValue) #datetime.datetime.strptime(
+                #times.getElementsByTagName('ExpectedDepartureTime')[0].firstChild.nodeValue, "%Y-%m-%dT%H:%M:%S.%fZ")
         except:
             departure['expected_departure'] = departure['scheduled_departure']
 
