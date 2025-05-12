@@ -7,7 +7,7 @@ https://gitlab.developers.cam.ac.uk/cscs/nextbuses-api-python-parser
 ## Summary of changes from the original project:
 
 * In bus.py, made it so the expected and scheduled departure times are shown in the local timezone, rather than in UTC
-* In config.json, added the parameter *"num_departures": 6,* so that you can choose how many arrivals to show for each bus stop
+* In config.json, added the parameter *"num_departures": 6,* so that you can choose how many arrivals to show for each bus stop. Of course, change 6 to whatever value you need.
 
 ## NextBus API
 
@@ -17,16 +17,26 @@ https://www.travelinedata.org.uk/traveline-open-data/nextbuses-api/
 
 Once you are given access to the API, you will be given a set of username and password which will be used by the API parser, and stored in *config.json* file.
 
+## Bus stop ATCO code
+
+The parser expects the ATCO code for the bus stop, while Google Maps shows the Naptan code for it. You can download the list of ATCO codes for your local transport authority from here:
+
+https://beta-naptan.dft.gov.uk/download/la
+
+I have included the bus stop code list for Cardiff in file *bus stop codes.xlsx*, but you will need to find the list for your local authority.
+
 ## Usage:
 * Install python3 and pip
 * Install pip requirements in requirements.txt (Flask, flask-cors, requests)
 * *Optional:* set up python environment with python -m venv /path/to/your/environment
 * Search bus stop in google maps and copy bus stop ID
-* Open file *bus stop codes.xlsx*, search for bus stop ID and copy matching ATCOcode
-* Edit config.json with desired bus stop code, plus your NextBus API username and password
+* Open spreadsheet file from https://beta-naptan.dft.gov.uk/download/la, search for bus stop ID and copy matching ATCOcode
+* Edit config.json with desired bus stop code and number of departures to show, plus your NextBus API username and password
 * Run the parser and HTML page builder with:
-** python sync.py config.json && python generate.py config.json
+  ```python sync.py config.json && python generate.py config.json```
 * The resulting page will be in html/buses.html
+
+# *Original project description from GitLab:*
 
 # Simple Python NextBuses API Parser and HTML Display
 
