@@ -4,6 +4,14 @@ This is a fork of the GitLab project below:
 
 https://gitlab.developers.cam.ac.uk/cscs/nextbuses-api-python-parser
 
+## What does this project do?
+
+As per the original GitLab project, this is a Python parser for the NextBus API. It will send a request, do some magic behind the scene and output a human-readable HTML file with the next buses departures from the bus stops of your choice:
+
+![immagine](https://github.com/user-attachments/assets/1242a7b3-fbe8-4e46-87f5-50c87919f625)
+
+This should work for any bus authority within England, Wales and Scotland. I couldn't find the ATCO codes for bus stops in Northern Ireland, so unfortunately this is untested for NI.
+
 ## Summary of changes from the original project:
 
 * In bus.py, made it so the expected and scheduled departure times are shown in the local timezone, rather than in UTC
