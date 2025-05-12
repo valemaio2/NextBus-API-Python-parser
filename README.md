@@ -7,6 +7,26 @@ https://gitlab.developers.cam.ac.uk/cscs/nextbuses-api-python-parser
 ## Summary of changes from the original project:
 
 * In bus.py, made it so the expected and scheduled departure times are shown in the local timezone, rather than in UTC
+* In config.json, added the parameter *"num_departures": 6,* so that you can choose how many arrivals to show for each bus stop
+
+## NextBus API
+
+To be able to use this parser, you will need to request a NextBus API account. As of writing this, they provide 180,000 free hits every 6 months. To request access to the API, please follow this link:
+
+https://www.travelinedata.org.uk/traveline-open-data/nextbuses-api/
+
+Once you are given access to the API, you will be given a set of username and password which will be used by the API parser, and stored in *config.json* file.
+
+## Usage:
+* Install python3 and pip
+* Install pip requirements in requirements.txt (Flask, flask-cors, requests)
+* *Optional:* set up python environment with python -m venv /path/to/your/environment
+* Search bus stop in google maps and copy bus stop ID
+* Open file *bus stop codes.xlsx*, search for bus stop ID and copy matching ATCOcode
+* Edit config.json with desired bus stop code, plus your NextBus API username and password
+* Run the parser and HTML page builder with:
+** python sync.py config.json && python generate.py config.json
+* The resulting page will be in html/buses.html
 
 # Simple Python NextBuses API Parser and HTML Display
 
