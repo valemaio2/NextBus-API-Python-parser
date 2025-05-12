@@ -36,6 +36,15 @@ I have included the bus stop code list for Cardiff in file *bus stop codes.xlsx*
   ```python sync.py config.json && python generate.py config.json```
 * The resulting page will be in html/buses.html
 
+## A word about Python <3.11 and datetime
+
+According to https://note.nkmk.me/en/python-datetime-isoformat-fromisoformat/#isoformat-string-with-z Python versions below 3.11 do not handle the trailing Z from UTC timezone correctly. The best way to avid issues would be installing Python version 3.11 and above, otherwise the code from this project would need modifying so that it transforms ```2023-04-01T05:00:30.001000Z``` into ```2023-04-01 05:00:30.001000+00:00```. This is beyond my Python abilities unfortunately.
+A symptom of this happening would be an error message similar to the one below:
+
+![immagine](https://github.com/user-attachments/assets/c1ce1221-7843-4221-9c2a-f73cc7645767)
+
+The running python version can be checked by running the command ```python --version``` or ```/path/to/your/environment/python --version```
+
 # *Original project description from GitLab:*
 
 # Simple Python NextBuses API Parser and HTML Display
