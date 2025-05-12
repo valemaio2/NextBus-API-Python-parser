@@ -1,3 +1,13 @@
+# An improved Python NextBuses API Parser
+
+This is a fork of the GitLab project below:
+
+https://gitlab.developers.cam.ac.uk/cscs/nextbuses-api-python-parser
+
+## Summary of changes from the original project:
+
+* In bus.py, made it so the expected and scheduled departure times are shown in the local timezone, rather than in UTC
+
 # Simple Python NextBuses API Parser and HTML Display
 
 This project is a very simple implementation of the NextBuses API (https://www.travelinedata.org.uk/traveline-open-data/nextbuses-api/).
